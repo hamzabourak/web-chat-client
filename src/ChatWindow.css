@@ -1,0 +1,62 @@
+  .chatWindow {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    border-width: 2px;
+    border-color: lightskyblue;
+    border-style: solid;
+    background-color: white;
+  }
+
+  .chatSpace {
+    height: 350px;
+    width: 250px;
+    margin-top: 15px;
+  }
+
+  .chatAd {
+    float: left;
+    margin: 3px;
+    margin-right: 20px;
+  }
+
+  .actions button {
+      padding: 0px;
+      background-color: transparent;
+      border: none;
+      float: right;
+  }
+
+  .chatText {
+      margin: 0px;
+  }
+
+  .chatMessage {
+      text-align: left;
+      padding: 4px;
+      margin-right: 4px;
+      margin-left: 5px;
+      margin-bottom: 7px;
+      width: max-content;
+  }
+
+  .outboundMessage {
+    background: lightskyblue;
+    border-radius: .4em;
+    float: right;
+  }
+
+  .inboundMessage {
+    background: lightgrey;
+    border-radius: .4em;
+  }
+
+  .sendMessage {
+      background-color: lightblue;
+      height: 40px;
+  }
+
+  .sendMessage input {
+      border: none;
+      border-radius: 10px;
+  }
