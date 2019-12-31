@@ -6,6 +6,7 @@
     border-color: lightskyblue;
     border-style: solid;
     background-color: white;
+    border-radius: 6px;
   }
 
   .chatSpace {
@@ -54,9 +55,26 @@
   .sendMessage {
       background-color: lightblue;
       height: 40px;
+      text-align: left;
+      align-items: center;
+      display: flex;
   }
 
   .sendMessage input {
       border: none;
-      border-radius: 10px;
+      background-color: transparent;
+      height: inherit;
+      margin-left: 4px;
+      width: 100%;
+  }
+
+  .sendBtn {
+    border: none;
+    background-color: transparent;
+    float: right;
+  }
+
+  .actionPanel {
+     height:35px;
+     background-color: lightblue;
   }

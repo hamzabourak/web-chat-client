@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import minimizeIcon from './minimize.svg';
 import maximizeIcon from './maximize.svg';
 import closeIcon from './close.svg';
+import sendIcon from './send.svg';
 import './ChatWindow.css';
 
 const MessageType = {
@@ -15,9 +16,12 @@ class ChatWindow extends Component {
 
      this.onMinimize = this.onMinimize.bind(this);
      this.onClose = this.onClose.bind(this);
+     this.onMessageChanged = this.onMessageChanged.bind(this);
+     this.onSend = this.onSend.bind(this);
      this.state = {
          minimized: false,
          visible: true,
+         messageText: '',
          messages: [{
              Id:1,
              type:1,
@@ -41,31 +45,57 @@ class ChatWindow extends Component {
     this.setState({
        visible: false,
     });
-}
+  }
+
+  onMessageChanged(e) {
+    this.setState({
+        messageText: e.target.value,
+    });
+  }
+
+  onSend() {
+    const newMessage = {
+        Id: this.state.messages.length,
+        type: MessageType.outbound,
+        text: this.state.messageText,
+    };
+    const newMessageList = this.state.messages;
+    newMessageList.push(newMessage);
+
+    this.setState({
+        messages: newMessageList,
+    });
+  }
 
   render() {
     return  (this.state.visible && <div className="chatWindow">
       {!this.state.minimized &&
         <div>
-            <div className='actions'>
+            <div className='actions actionPanel'>
                 <button onClick={this.onClose}>
-                <img src={closeIcon} alt="close" />
+                  <img src={closeIcon} alt="close" />
                 </button>
                 <button onClick={this.onMinimize}>
-                <img src={minimizeIcon} alt="minimize" />
+                  <img src={minimizeIcon} alt="minimize" />
                 </button>
             </div>
             <br />   
             <div className="chatSpace">
                 {this.state.messages.map(msg =>
-                    <div 
-                        id={msg.id} 
-                        className={'chatMessage ' + (msg.type == MessageType.inbound ? 'inboundMessage' :'outboundMessage')}>
-                            <p className='chatText'>{msg.text}</p>            
-                    </div>)}    
+                   <React.Fragment>
+                        <div 
+                            key={msg.id} 
+                            className={'chatMessage ' + (msg.type == MessageType.inbound ? 'inboundMessage' :'outboundMessage')}>
+                                <p className='chatText'>{msg.text}</p> 
+                        </div>
+                        <br />
+                    </React.Fragment>)}    
             </div>     
             <div className="sendMessage">
-                <input type="text" />
+                <input type="text" placeholder="Type a message ..." onChange={this.onMessageChanged} />
+                <button className="sendBtn" onClick={this.onSend}>
+                  <img src={sendIcon} alt="send" />
+                </button>
             </div>
         </div>
       }
